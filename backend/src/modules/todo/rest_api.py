@@ -54,6 +54,11 @@ class Todo(Resource):
             response = "OK"
         return jsonify(response)
 
+    def patch(self, todo_id):
+        """ Change todo's status. """
+
+        return "test"
+
 
 @NAMESPACE.route('/all')
 class Todos(Resource):
