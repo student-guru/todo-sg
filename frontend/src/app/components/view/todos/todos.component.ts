@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Todo } from '../../../todo';
+
 
 @Component({
   selector: 'app-todos',
@@ -7,26 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
 
-  value: string;
-  constructor() { }
+  readonly backend = 'http://localhost:3000/';
 
-  todos = [
-    {
-      id: 1,
-      title: "Get done",
-      done: false
-    },
-    {
-      id: 2,
-      title: "Hello",
-      done: false
-    }
-  ]
+  value: string;
+  todos: any;
+
+  constructor(private http: HttpClient) { }
+
+  
   ngOnInit() {
+    this.getTodos();
+  }
+
+  getTodos(){
+    this.todos = this.http.get(this.backend + 'todos')
   }
 
   deleteTodo(id){
-    this.todos = this.todos.filter(el => el.id !== id);
+    let params = new HttpParams().set('id', id);
+    this.http.delete(this.backend + 'todos',{ params })
+    this.getTodos();
   }
 
   addTodo(){
@@ -34,17 +37,17 @@ export class TodosComponent implements OnInit {
       alert("GIVE TODO");
       return
     }
+
     let todo = {
-      id: this.todos.length + 1,
-      title: this.value,
-      done: false 
+      title: this.value
     }
-    this.todos.push(todo);
-    this.value = '';
+    this.http.post( this.backend + '/todos', todo).subscribe(
+      res => console.log(res)
+    )
   }
 
   changeStatus(id){
-    this.todos.map(el => el.id == id ? el.done = !el.done : el.done);
-    console.log(this.todos)
+    let params = new HttpParams().set('id', id);
+    this.http.put(this.backend + '/todos', { params });
   }
 }
