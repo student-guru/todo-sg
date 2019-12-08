@@ -9,6 +9,10 @@ verify_ssl = true
 pyyaml = "*"
 flask-cors = "*"
 flask = "*"
+flask-restplus = "*"
+redis = "*"
+pyjwt = "*"
+flask-bcrypt = "*"
 
 [requires]
 python_version = "3.6"

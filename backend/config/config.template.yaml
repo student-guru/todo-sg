@@ -1,10 +1,14 @@
-development: ''
-  backend: ''
+development:
+  backend:
     ip: ''
     port: ''
-  frontend: ''
+    debug_mode: true
+    db_ip: 'localhost' # The address of the database server.
+  frontend:
     ip: ''
     port: ''
-  logging: ''
-    folder: ''
+  logging:
+    level: 'DEBUG'
+    format: '[%(asctime)s | %(levelname)s | %(name)s]: %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
 deployment: ''
