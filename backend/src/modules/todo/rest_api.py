@@ -56,8 +56,13 @@ class Todo(Resource):
 
     def patch(self, todo_id):
         """ Change todo's status. """
-
-        return "test"
+        todo_id = str(todo_id)
+        new_status = lib.toggle_todo_status(todo_id)
+        if not new_status:
+            response = "Key not found"
+        else:
+            response = {"id": todo_id, "status": new_status}
+        return jsonify(response)
 
 
 @NAMESPACE.route('/all')
