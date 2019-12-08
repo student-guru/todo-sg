@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Neucha|Patrick+Hand&display=swap');
+
+body{
+    font-family: 'Patrick Hand', cursive;
+}
+
+.container-fluid{
+    background: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    height: 100vh;
+}
+
+h1{
+    font-family: 'Neucha', cursive;
+    font-size: 5em;
+}
+
+.todo{
+    padding: 5px;
+    background: rgb(228, 228, 228);
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+
+.todos{
+    padding: 30px;
+    border-radius: 16px;
+    background: white;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 75vh;
+}
