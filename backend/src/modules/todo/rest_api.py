@@ -33,10 +33,27 @@ class Todo(Resource):
         todo_title = args.get('title', '')
         # Create todo.
         new_todo = Todo_Model(title=todo_title, status=todo_status)
-        new_todo.save_to_db()
+        todo_dict = new_todo.save_to_db()
         # Response from server.
-        response = {"title": new_todo.title, "status": new_todo.status}
+        response = todo_dict
         return jsonify(response)
+
+@NAMESPACE.route('/<int:todo_id>')
+class Todo(Resource):
+    """
+    Api class for specific todo.
+    """
+    def delete(self, todo_id):
+        """ REmoves a todo from db. """
+        todo_id = str(todo_id)
+        # Response from server.
+        response = lib.delete_todo(todo_id)
+        if not response:
+            response = "Key not found"
+        else:
+            response = "OK"
+        return jsonify(response)
+
 
 @NAMESPACE.route('/all')
 class Todos(Resource):
