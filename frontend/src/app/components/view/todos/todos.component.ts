@@ -7,16 +7,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
 
+  value: string;
   constructor() { }
 
   todos = [
-    "hi"
+    {
+      id: 1,
+      title: "Get done",
+      done: false
+    },
+    {
+      id: 2,
+      title: "Hello",
+      done: false
+    }
   ]
   ngOnInit() {
-    // setTimeout(function() => {this.todos.push()},3000)
-    setTimeout(() => {
-      this.todos.push("markos")
-    }, 300);
   }
 
+  deleteTodo(id){
+    this.todos = this.todos.filter(el => el.id !== id);
+  }
+
+  addTodo(){
+    if(!this.value){
+      alert("GIVE TODO");
+      return
+    }
+    let todo = {
+      id: this.todos.length + 1,
+      title: this.value,
+      done: false 
+    }
+    this.todos.push(todo);
+    this.value = '';
+  }
+
+  changeStatus(id){
+    this.todos.map(el => el.id == id ? el.done = !el.done : el.done);
+    console.log(this.todos)
+  }
 }
