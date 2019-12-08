@@ -6,6 +6,13 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+pyyaml = "*"
+flask-cors = "*"
+flask = "*"
+flask-restplus = "*"
+redis = "*"
+pyjwt = "*"
+flask-bcrypt = "*"
 
 [requires]
 python_version = "3.6"
